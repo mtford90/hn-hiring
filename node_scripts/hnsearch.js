@@ -31,7 +31,6 @@ function getUserData(userId, cb) {
             cb(null, JSON.parse(data));
         });
     }).end();
-
 }
 
 /**
@@ -190,19 +189,11 @@ function getRootComments(itemId, cb) {
     );
 }
 
-var hn = {
+module.exports = {
     getRootComments: getRootComments,
     search: search,
     getUserData: getUserData
 };
-
-if (typeof window !== 'undefined') {
-    window.hn = hn;
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = hn;
-}
 
 //
 //getRootComments('8611198', function (err, comments) {

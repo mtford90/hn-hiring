@@ -10,37 +10,15 @@
 
 var React = require('react'),
     conf = require('../app.config'),
-    sidebar = require('./sidebar'),
     bootstrap = require('react-bootstrap'),
-    routes = require('./routes'),
-    Navigation = sidebar.Nav;
+    routes = require('./routes');
 
-/*********************/
-/** Pack dem styles **/
-/*********************/
 
-// The toggle wrapper features the 'toggle' class which passes down styles to the sidebar and content wrapper
-// depending on whether or not toggle has been pressed.
-var ToggleWrapper = React.createClass({
-    render: function () {
-        var isToggled = sidebar.isToggled();
-        return (
-            <div id="toggle-wrapper" className={isToggled == 'false' ? '' : 'toggled'}>
-                {this.props.children}
-            </div>
-        )
-    }
-});
-
-// The content wrapper 'wraps' the content of the page in a fluid, scrollable container ensuring that the
-// sidebar is always visible.
 var ContentWrapper = React.createClass({
     render: function () {
         return (
-            <div id="page-content-wrapper">
-                <div className="container-fluid" role="main">
+            <div className="container-fluid" role="main">
                     {this.props.children}
-                </div>
             </div>
         )
     }
@@ -49,16 +27,9 @@ var ContentWrapper = React.createClass({
 var App = React.createClass({
     render: function () {
         return (
-            <ToggleWrapper>
-                <Navigation items={routes.navigationItems}
-                    brand={conf.brand}
-                    brandRoute={routes.defaultRoute.text}
-                    brandIcon={conf.brandIcon}/>
-                    {/*This is where routes are injected.*/}
-                <ContentWrapper>
-                    <this.props.activeRouteHandler/>
-                </ContentWrapper>
-            </ToggleWrapper>
+        <ContentWrapper>
+            <this.props.activeRouteHandler/>
+        </ContentWrapper>
         )
     }
 });

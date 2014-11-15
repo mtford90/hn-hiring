@@ -79,9 +79,6 @@ var Home = React.createClass({
                                 <p>
                                 A rather opinionated boilerplate for ReactJS, focusing on developer workflow in aid of rapid development and delivery.
                                 </p>
-                                <p>
-                                    <Link to="About" className="btn btn-primary btn-lg" role="button">Learn more &raquo;</Link>
-                                </p>
                             </Jumbotron>
                         </Col>
                     </Row>

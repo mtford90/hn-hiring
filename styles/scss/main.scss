@@ -7,7 +7,6 @@ Point of entry for scss bundling
 // If doing tons of bootstrap imports within your scss you should uncomment the below and remove bootstrap
 // from scripts/styles/vendor.js
 //@import "../../vendor/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-@import "_sidebar.scss";
 @import "variables";
 
 html, body {
