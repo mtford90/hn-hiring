@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "jquery": "^2.1.1",
+    "querystring": "^0.2.0",
     "react": "^0.12.0",
     "react-bootstrap": "^0.12.0",
     "react-document-title": "^0.1.3",
