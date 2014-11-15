@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mtford90/hn-hiring",
   "devDependencies": {
+    "async": "^0.9.0",
     "autoprefixer-loader": "^1.0.0",
     "body-parser": "^1.9.2",
     "css-loader": "^0.9.0",
@@ -53,6 +54,7 @@
   },
   "dependencies": {
     "jquery": "^2.1.1",
+    "jsdom": "^1.2.1",
     "querystring": "^0.2.0",
     "react": "^0.12.0",
     "react-bootstrap": "^0.12.0",
