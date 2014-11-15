@@ -31,7 +31,12 @@ var gulp = require('gulp'),
 // and the live editing functionality that will make our lives so much easier.
     webpack = require('webpack'),
 // dev.config is the user settings
-    conf = require('./dev.config');
+    conf = require('./dev.config'),
+    source = require('vinyl-source-stream'),
+    gutil = require('gutil'),
+// browserify is used to package up the hnsearch script. It allows us to use node http/https etc in the browser.
+// prob not very efficient but this is just a POC anyway...
+    browserify = require('browserify');
 
 /**
  * A list of globs of all Javascript files (both app and test specifications)
@@ -162,6 +167,14 @@ gulp.task('compile', function () {
     gulp.src(HTML_FILES)
         .pipe(replace('scripts/bundle.js', conf.compilation.name))
         .pipe(gulp.dest(publicDest));
+});
+
+gulp.task('nodeBundle', function () {
+    var bundler = browserify('./node_scripts/hnsearch.js');
+    return bundler.bundle()
+        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+        .pipe(source('hnBundle.js'))
+        .pipe(gulp.dest(conf.compilation.dir));
 });
 
 // If gulp is run without a task specification we just run the help tasks which displays a list

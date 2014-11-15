@@ -8,7 +8,7 @@ var ALGOLIA_API_KEY = '8ece23f8eb07cd25d40262a1764599b1'
     , ALGOLIA_APP_ID = 'UJ5WYC0L7X'
     , ALGOLIA_PATH = '/1/indexes/Item_production/query'
     , ALGOLIA_HOSTNAME = 'uj5wyc0l7x-dsn.algolia.io'
-    , HN_ITEM_URL = 'https://news.ycombinator.com/item?id='
+    , HN_ITEM_URL = 'news.ycombinator.com/item?id='
     , HN_HOSTNAME = 'hacker-news.firebaseio.com'
     , HN_API_USER_PATH = '/v0/user/$USERNAME.json'
     , HN_USER = 'user'
@@ -110,8 +110,10 @@ function search(opts, cb) {
  * @param cb
  */
 function getRootComments(itemId, cb) {
+    var item = 'http://www.corsproxy.com/' + HN_ITEM_URL + itemId;
+    console.log('item', item);
     jsdom.env(
-        HN_ITEM_URL + itemId,
+        item,
         [JQUERY_LOC],
         function (errors, window) {
             var commentCells = window.$('td.default');
@@ -188,6 +190,19 @@ function getRootComments(itemId, cb) {
     );
 }
 
+var hn = {
+    getRootComments: getRootComments,
+    search: search,
+    getUserData: getUserData
+};
+
+if (typeof window !== 'undefined') {
+    window.hn = hn;
+}
+
+if (typeof module !== 'undefined') {
+    module.exports = hn;
+}
 
 //
 //getRootComments('8611198', function (err, comments) {
