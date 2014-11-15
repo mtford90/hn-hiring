@@ -101,6 +101,13 @@ gulp.task('test', function () {
     return test();
 });
 
+// Run integration tests e.g. hitting the Hacker News API directly.
+gulp.task('int-test', function () {
+    var testconfig = _.extend({}, TEST_CONFIG);
+    testconfig.testDirectoryName = 'int_tests';
+    delete testconfig.scriptPreprocessor;
+    return gulp.src('int_tests').pipe(jest(testconfig));
+});
 
 gulp.task('watch', ['watch-js', 'watch-server']);
 
