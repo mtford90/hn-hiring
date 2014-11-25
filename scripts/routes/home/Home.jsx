@@ -9,6 +9,7 @@ var React = require('react')
     , Row = bootstrap.Row
     , Col = bootstrap.Col
     , data = require('./data')
+    , HackerNews = require('../../data')
     , config = require('../../../app.config')
     , DocumentTitle = require('react-document-title')
     , Jumbotron = bootstrap.Jumbotron;
@@ -87,6 +88,13 @@ var Home = React.createClass({
             </DocumentTitle>
         );
     }
+});
+
+HackerNews.install(function () {
+    HackerNews.GET('comments/8582985', function (err, item) {
+        console.log('err', err);
+        console.log('item', item);
+    });
 });
 
 

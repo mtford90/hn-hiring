@@ -65,6 +65,7 @@
     "react": "^0.12.0",
     "react-bootstrap": "^0.12.0",
     "react-document-title": "^0.1.3",
-    "react-router": "^0.10.2"
+    "react-router": "^0.10.2",
+    "siesta-orm": "0.0.5"
   }
 }

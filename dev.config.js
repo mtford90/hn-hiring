@@ -32,9 +32,9 @@ module.exports = {
     port: 3000,
     webPack: {
         // (this is the actual port that runs the dev server, but webpack sort of hijacks it to serve intermediate files)
-        port: 3000,
+        port: 3001,
         // stfu webpack, you're noisy
-        silent: false
+        silent: true
     },
     // Open browser on watch?
     open: false,

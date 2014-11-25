@@ -3,6 +3,7 @@ var webpack = require('webpack')
     , webpackConfig = require('./webpack.config')
     , url = require('url')
     , proxy = require('proxy-middleware')
+    , express = require('express')
     , conf = require('./dev.config');
 
 webpackConfig.plugins.push(new webpack.DefinePlugin({
@@ -11,6 +12,7 @@ webpackConfig.plugins.push(new webpack.DefinePlugin({
 
 var app = require('./server');
 
+app.use(express.static(__dirname));
 app.use('/scripts', proxy(url.parse('http://localhost:' + conf.webPack.port.toString() + webpackConfig.output.publicPath)));
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');

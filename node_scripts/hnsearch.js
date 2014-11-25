@@ -15,7 +15,6 @@ var ALGOLIA_API_KEY = '8ece23f8eb07cd25d40262a1764599b1'
     , HN_ITEM = 'item'
     , JQUERY_LOC = 'http://code.jquery.com/jquery.js';
 
-
 function getUserData(userId, cb) {
     var options = {
         hostname: HN_HOSTNAME,
@@ -195,7 +194,7 @@ module.exports = {
     getUserData: getUserData
 };
 
-//
+
 //getRootComments('8611198', function (err, comments) {
 //    if (err) {
 //        console.error(err);
@@ -215,6 +214,7 @@ module.exports = {
 //        console.log('res', res);
 //    }
 //});
+//
 //
 //getUserData('mtford', function (err, user) {
 //    if (err) {
