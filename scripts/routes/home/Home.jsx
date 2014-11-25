@@ -68,34 +68,42 @@ var Features = React.createClass({
 
 var Home = React.createClass({
     render: function () {
+        var comments = this.state.comments;
+        console.log('render comments', comments);
+        var loading = this.state.isLoading;
         return (
             <DocumentTitle title={config.brand}>
                 <div id="home">
-                    <Row>
-                        <Col md="12">
-                            <Jumbotron>
-                                <h1>
-                                    <i className="fa fa-fire"></i>
-                                Red Hot React</h1>
-                                <p>
-                                A rather opinionated boilerplate for ReactJS, focusing on developer workflow in aid of rapid development and delivery.
-                                </p>
-                            </Jumbotron>
-                        </Col>
-                    </Row>
-                    <Features features={data.features}/>
+                    <div id="comments">
+                        {loading ? <div>loading</div>
+                            : comments.map(function (object, i) {
+                            return (<div>{object.text}</div>);
+                        })}
+                    </div>
                 </div>
             </DocumentTitle>
         );
+    },
+    componentDidMount: function () {
+        var self = this;
+        HackerNews.install(function () {
+            HackerNews.GET('comments/8582985', function (err, items) {
+                console.log('Got ' + items.length.toString() + ' comments');
+                self.setState({
+                    comments: items,
+                    err: err,
+                    isLoading: false
+                });
+            });
+        });
+    },
+    getInitialState: function () {
+        return {
+            comments: [],
+            err: null,
+            isLoading: true
+        }
     }
 });
-
-HackerNews.install(function () {
-    HackerNews.GET('comments/8582985', function (err, item) {
-        console.log('err', err);
-        console.log('item', item);
-    });
-});
-
 
 module.exports = Home;
